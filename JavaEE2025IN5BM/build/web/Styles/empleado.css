@@ -1,0 +1,436 @@
+body {
+    margin: 0;
+    font-family: chill;
+    background-image: url(../img/EmpleadosFondo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #fefefe;
+    min-height: 100vh;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
+    background: #000;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+}
+
+nav .logo {
+    font-size: 2em;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+
+.contenedor-principal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    max-width: 1400px;
+    height: auto;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.panel-formulario {
+    flex: 1 1 400px;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.panel-formulario h1 {
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+    color: #d4b067;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.botones button {
+    flex: 0 0 auto;
+}
+
+.panel-tabla {
+    flex: 1.5 1 600px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.tabla-contenedor {
+    overflow-y: auto;
+    flex: 1;
+    border-radius: 10px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.marca-interna {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: white;
+    pointer-events: none;
+    user-select: none;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.input {
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 1em;
+    background-color: #ccc;
+    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+    transition: 300ms ease-in-out;
+}
+
+.input:focus {
+    background-color: white;
+    transform: scale(1.05);
+    box-shadow: 13px 13px 100px #969696,
+                -13px -13px 100px #ffffff;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1a1a;
+    color: #fefefe;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tabla thead {
+    background-color: #b68d40;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+}
+
+.tabla th, .tabla td {
+    padding: 12px 15px;
+    
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.tabla th {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tabla tbody tr {
+    transition: all 0.3s ease;
+}
+
+.tabla tbody tr:hover {
+    background-color: #2a2a2a;
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tabla tbody tr td {
+    border-bottom: 1px solid #333;
+}
+
+.tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.radio-input {
+    -webkit-appearance: none;
+    display: block;
+    margin: 10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    vertical-align: middle;
+    box-shadow: hsla(0,0%,100%,.15) 0 1px 1px, inset hsla(0,0%,0%,.5) 0 0 0 1px;
+    background-color: hsla(0,0%,0%,.2);
+    background-image: -webkit-radial-gradient( hsla(200,100%,90%,1) 0%, hsla(200,100%,70%,1) 15%, hsla(200,100%,60%,.3) 28%, hsla(200,100%,30%,0) 70% );
+    background-repeat: no-repeat;
+    -webkit-transition: background-position .15s cubic-bezier(.8, 0, 1, 1),
+        -webkit-transform .25s cubic-bezier(.8, 0, 1, 1);
+    outline: none;
+}
+
+.radio-input:checked {
+    -webkit-transition: background-position .2s .15s cubic-bezier(0, 0, .2, 1),
+        -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
+}
+
+.radio-input:active {
+    -webkit-transform: scale(1.5);
+    -webkit-transition: -webkit-transform .1s cubic-bezier(0, 0, .2, 1);
+}
+
+.radio-input,
+.radio-input:active {
+    background-position: 0 24px;
+}
+
+.radio-input:checked {
+    background-position: 0 0;
+}
+
+.radio-input:checked ~ .radio-input,
+.radio-input:checked ~ .radio-input:active {
+    background-position: 0 -24px;
+}
+
+.tabla tbody tr:has(.radio-input:checked) {
+    background-color: #333; 
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-insertar {
+    font-family: inherit;
+    font-size: 20px;
+    background: #28a745;
+    color: white;
+    fill: rgb(155, 153, 153);
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-weight: 1000;
+}
+
+.btn-insertar span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-insertar svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.btn-insertar:hover {
+    background: #218838;
+}
+
+.btn-insertar:hover .svg-wrapper {
+    transform: scale(1.25);
+    transition: 0.5s linear;
+}
+
+.btn-insertar:hover svg {
+    transform: translateX(1.2em) scale(1.1);
+    fill: #fff;
+}
+
+.btn-insertar:hover span {
+    opacity: 0;
+    transition: 0.5s linear;
+}
+
+.btn-insertar:active {
+    transform: scale(0.95);
+}
+
+.btn-actualizar {
+    width: 180px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.5s ease-in-out;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    background: #007bff;
+    color: #f5f5f5;
+}
+
+.btn-actualizar:hover {
+    box-shadow: 0 0 20px 0px #2e2e2e3a;
+}
+
+.btn-actualizar .icon {
+    position: absolute;
+    height: 40px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+.btn-actualizar .text {
+    transform: translateX(55px);
+}
+
+.btn-actualizar:hover .icon {
+    width: 175px;
+}
+
+.btn-actualizar:hover .text {
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+.btn-actualizar:focus {
+    outline: none;
+}
+
+.btn-actualizar:active .icon {
+    transform: scale(0.85);
+}
+
+.btn-buscar {
+    width: fit-content;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 15px;
+    gap: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(120deg, #6c757d, #495057);
+}
+
+.IconContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+}
+
+.telescope {
+    width: 100%;
+    height: auto;
+    transform-origin: center;
+    transition: all 1s;
+    transform: rotate(20deg);
+}
+
+.tripod {
+    width: 60%;
+    height: auto;
+}
+
+.text {
+    color: rgb(240, 240, 240);
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.btn-buscar:hover .telescope {
+    transform: rotate(-35deg);
+}
+
+.btn-eliminar {
+    --main-focus: #2d8cf0;
+    --font-color: #323232;
+    --bg-color-sub: #ff4d4d;
+    --bg-color: #dc3545;
+    --main-color: #323232;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.btn-eliminar, .btn-eliminar .button__icon, .btn-eliminar .button__text {
+    transition: all 0.3s;
+}
+
+.btn-eliminar .button__text {
+    transform: translateX(33px);
+    color: var(--font-color);
+    font-weight: 600;
+}
+
+.btn-eliminar .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: var(--bg-color-sub);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-eliminar .svg {
+    width: 20px;
+    fill: var(--main-color);
+}
+
+.btn-eliminar:hover {
+    background: var(--bg-color);
+}
+
+.btn-eliminar:hover .button__text {
+    color: transparent;
+}
+
+.btn-eliminar:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+}
+
+.btn-eliminar:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px var(--main-color);
+}

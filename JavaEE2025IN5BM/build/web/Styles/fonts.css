@@ -1,0 +1,9 @@
+@font-face{
+    font-family:'chill';
+    src: url(../fonts/Chillax-Variable.ttf) format("truetype");
+}
+
+@font-face{
+        font-family: "roboto";
+    src: url(../fonts/RobotoCondensed-VariableFont_wght.ttf) format("truetype");
+}
