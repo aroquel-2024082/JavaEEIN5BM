@@ -1,66 +1,40 @@
 package com.alanlacan.modelo;
-
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
+ 
+import com.alanlacan.config.Conexion;
+import com.alanlacan.modelo.Empleado;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+ 
+ 
 public class EmpleadoDAO {
-    
-    private EntityManagerFactory emf;
-    private EntityManager em;
-    
-    public EmpleadoDAO() {
-        emf = Persistence.createEntityManagerFactory("dominio");
-        em = emf.createEntityManager();
-    }
- 
-    public void crearEmpleado(Empleado empleado) {
+    Conexion cn= new Conexion();
+    Connection con;
+    PreparedStatement ps;
+    ResultSet rs;
+    int resp;
+    public Empleado validar(String emailEmpleado, String telefonoEmpleado){
+        //Instanciar el objetdo de la entidad Empleado
+        Empleado empleado = new Empleado();
+        //Agregar una variable de tipo String para mostrar consulta de sql
+        String sql = "select * from Empleados where emailEmpleado = ? and telefonoEmpleado = ?";
         try {
-            em.getTransaction().begin();
-            em.persist(empleado); 
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        }
-    }
- 
-    public Empleado buscarEmpleado(int codigoEmpleado) {
-        return em.find(Empleado.class, codigoEmpleado);
-    }
- 
-    public void actualizarEmpleado(Empleado empleado) {
-        try {
-            em.getTransaction().begin();
-            em.merge(empleado);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        }
-    }
- 
-    public void eliminarEmpleado(int codigoEmpleado) {
-        try {
-            Empleado empleado = em.find(Empleado.class, codigoEmpleado);
-            if (empleado != null) {
-                em.getTransaction().begin();
-                em.remove(empleado); 
-                em.getTransaction().commit();
+            con = cn.Conexion();
+            ps = con.prepareCall(sql);
+            ps.setString(1, emailEmpleado);
+            ps.setString(2, telefonoEmpleado);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                empleado.setCodigoEmpleado(rs.getInt("codigoEmpleado"));
+                empleado.setNombreEmpleado(rs.getString("nombreEmpleado"));
+                empleado.setApellidoEmpleado(rs.getString("apellidoEmpleado"));
+                empleado.setEmailEmpleado(rs.getString("emailEmpleado"));
+                empleado.setTelefonoEmpleado(rs.getString("telefonoEmpleado"));    
             }
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            System.out.println("El usuario o contrasena son incorrectos");
             e.printStackTrace();
         }
-    }
- 
-    public List<Empleado> listarEmpleado() {
-        return em.createQuery("SELECT e From Empleado e", Empleado.class).getResultList();
-    }
- 
-    public void cerrar() {
-        em.close();
-        emf.close();
+        return empleado; //Empleado encontrado
     }
 }

@@ -1,30 +1,14 @@
 package com.alanlacan.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table (name = "Empleados")
 public class Empleado {
-    @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int codigoEmpleado;
-    @Column
     private String nombreEmpleado;
-    @Column
     private String apellidoEmpleado;
-    @Column
-    private String direccionEmpleado;
-    @Column        
+    private String direccionEmpleado;      
     private String telefonoEmpleado;
-    @Column
     private String emailEmpleado;
-    @Column
     private String puestoEmpleado;
 
     public Empleado() {

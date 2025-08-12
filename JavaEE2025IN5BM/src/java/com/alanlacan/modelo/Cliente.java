@@ -11,22 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
 
-@Entity
-@Table (name = "Clientes")
 public class Cliente {
-    @Id
-    @Column 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigoCliente;
-    @Column
     private String nombreCliente;
-    @Column
     private String apellidoCliente;
-    @Column
     private String emailCliente;
-    @Column
     private String contrasenia;
-    @Column(name = "imagen")
     private String imagen;
 
     public Cliente() {
