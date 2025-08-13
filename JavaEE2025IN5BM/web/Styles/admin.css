@@ -152,10 +152,7 @@ nav ul li.avatar img:hover {
     margin: 2rem auto;
     padding: 2rem;
     text-align: center;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
+    background-color: transparent;
 }
 
 .panel h2 {
@@ -293,5 +290,29 @@ nav ul li.avatar img:hover {
     .btn {
         padding: 0.3rem 0.6rem;
         font-size: 0.8rem;
+    }
+}
+
+/* Estilos para el iframe */
+iframe[name="contentFrame"] {
+    width: 100%;
+    min-height: 600px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: white;
+}
+
+/* Responsividad para el iframe */
+@media (max-width: 768px) {
+    iframe[name="contentFrame"] {
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    iframe[name="contentFrame"] {
+        min-height: 300px;
     }
 }

@@ -36,16 +36,16 @@
     <p>Essenza & Co.</p>
     <p class="subtitulo">Ingresa tus datos para iniciar sesion</p>
 
-                <form action="Validar" method="POST" class="formulario">
-    <input type="text" name="txtCorreo" placeholder="Correo" required />
-    <input type="password" name="txtContrasena" placeholder="Contrasenia" required />
-    <button type="submit" name="btnIngresar" value="Ingresar"class="boton-brillante">Iniciar Sesión</button>
-    <div class="extras">
-    <label><input type="checkbox" />Recordarme</label>
-    <a href="#">¿Olvidaste la contraseña?</a>
-    </div>
-    </form>
-
+        <form action="Validar" method="POST" class="formulario">
+            <input type="text" name="txtCorreo" placeholder="Correo" required />
+            <input type="password" name="txtContrasena" placeholder="Contrasenia" required />
+            <button type="submit" name="btnIngresar" value="Ingresar"class="boton-brillante">Iniciar Sesión</button>
+            <div class="extras">
+                <label><input type="checkbox" />Recordarme</label>
+                <a href="#">¿Olvidaste la contraseña?</a>
             </div>
+        </form>
+
+    </div>
     </body>
     </html>

@@ -1,102 +1,59 @@
-    /*
-    * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-    * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
-    */
-    package Controlador;
-    import java.io.IOException;
-    import javax.servlet.ServletException;
-    import javax.servlet.http.HttpServlet;
-    import javax.servlet.http.HttpServletRequest;
-    import javax.servlet.http.HttpServletResponse;
-    /**
-    *
-    * @author informatica
-    */
-    public class Controlador extends HttpServlet {
-        /**
-         * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-         * methods.
-         *
-         * @param request servlet request
-         * @param response servlet response
-         * @throws ServletException if a servlet-specific error occurs
-         * @throws IOException if an I/O error occurs
-         */
-        protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+package Controlador;
+
+import com.alanlacan.modelo.Empleado;
+import com.alanlacan.modelo.EmpleadoDAO;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class Controlador extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String menu = request.getParameter("menu");
-            String accion = request.getParameter("accion");
-            if (menu.equals("Principal")) {
+        String menu = request.getParameter("menu");
+        String accion = request.getParameter("accion");
+        if (menu.equals("Principal")) {
             request.getRequestDispatcher("admin.jsp").forward(request, response);
+        } else if (menu.equals("Registrarse")) {
+            String nombre = request.getParameter("txtNombre");
+            String apellido = request.getParameter("txtApellido");
+            String direccion = ""; // No está en el formulario, opcional
+            String telefono = request.getParameter("txtContrasena"); // Usado como contraseña
+            String email = request.getParameter("txtCorreo");
+            String puesto = ""; // No está en el formulario, opcional
+
+            if (nombre != null && !nombre.isEmpty() && email != null && !email.isEmpty() && telefono != null && !telefono.isEmpty()) {
+                Empleado empleado = new Empleado(nombre, apellido, direccion, telefono, email, puesto);
+                EmpleadoDAO dao = new EmpleadoDAO();
+                if (dao.registrar(empleado)) {
+                    request.setAttribute("mensaje", "Registro exitoso. Inicia sesión.");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("error", "Error al registrar. El email ya existe o hay un problema.");
+                    request.getRequestDispatcher("registrase.jsp").forward(request, response);
+                }
+            } else {
+                request.setAttribute("error", "Todos los campos son requeridos.");
+                request.getRequestDispatcher("registrase.jsp").forward(request, response);
             }
         }
-        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
-        /**
-
-         * Handles the HTTP <code>GET</code> method.
-
-         *
-
-         * @param request servlet request
-
-         * @param response servlet response
-
-         * @throws ServletException if a servlet-specific error occurs
-
-         * @throws IOException if an I/O error occurs
-
-         */
-
-        @Override
-
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
-
-                throws ServletException, IOException {
-
-            processRequest(request, response);
-
-        }
-        /**
-
-         * Handles the HTTP <code>POST</code> method.
-
-         *
-
-         * @param request servlet request
-
-         * @param response servlet response
-
-         * @throws ServletException if a servlet-specific error occurs
-
-         * @throws IOException if an I/O error occurs
-
-         */
-
-        @Override
-
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
-
-                throws ServletException, IOException {
-
-            processRequest(request, response);
-
-        }
-        /**
-
-         * Returns a short description of the servlet.
-
-         *
-
-         * @return a String containing servlet description
-
-         */
-
-        @Override
-
-        public String getServletInfo() {
-
-            return "Short description";
-
-        }// </editor-fold>
     }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }
+}
