@@ -111,13 +111,13 @@ nav ul li.avatar img:hover {
     display: block;
 }
 
-/* Menú oculto por defecto */
+
 .avatar-menu {
     display: none;
     position: absolute;
-    top: 100%; /* justo debajo de la imagen */
+    top: 100%;
     left: 50%;
-    transform: translateX(-50%); /* centrar horizontalmente */
+    transform: translateX(-50%);
     background-color: var(--primary-color, #0b0c0c);
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.25);
@@ -127,7 +127,6 @@ nav ul li.avatar img:hover {
     z-index: 10;
 }
 
-/* Mostrar menú al hacer hover en avatar */
 .avatar:hover .avatar-menu {
     display: block;
 }
@@ -147,7 +146,22 @@ nav ul li.avatar img:hover {
     font-size: 12px;  
 }
 
-.panel {
+.message-welcome{
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+    background-color: white;
+    border-radius: 15px 15px 15px 15px;
+}
+
+.message-welcome h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.contenido {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 2rem;
@@ -155,7 +169,7 @@ nav ul li.avatar img:hover {
     background-color: transparent;
 }
 
-.panel h2 {
+.contenido iframe {
     font-size: 2.5rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
@@ -182,18 +196,18 @@ nav ul li.avatar img:hover {
         margin: 0.5rem 0;
     }
 
-    .panel {
+    .contenido {
         margin: 1rem;
         padding: 1.5rem;
     }
 
-    .panel h2 {
+    .contenido iframe {
         font-size: 2rem;
     }
 }
 
 @media (max-width: 480px) {
-    .panel h2 {
+    .contenido iframe {
         font-size: 1.5rem;
     }
 }
@@ -254,12 +268,12 @@ nav ul li.avatar img:hover {
         margin: 0.3rem;
     }
 
-    .panel {
+    .contenido {
         margin: 1rem;
         padding: 1.5rem;
     }
 
-    .panel h2 {
+    .contenido iframe {
         font-size: 2rem;
     }
 }
@@ -278,11 +292,11 @@ nav ul li.avatar img:hover {
         height: 30px;
     }
 
-    .panel h2 {
+    .contenido iframe {
         font-size: 1.5rem;
     }
 
-    .panel {
+    .contenido {
         margin: 0.5rem;
         padding: 1rem;
     }
@@ -293,8 +307,7 @@ nav ul li.avatar img:hover {
     }
 }
 
-/* Estilos para el iframe */
-iframe[name="contentFrame"] {
+iframe[name="contenido"] {
     width: 100%;
     min-height: 600px;
     border: none;
@@ -306,13 +319,13 @@ iframe[name="contentFrame"] {
 
 /* Responsividad para el iframe */
 @media (max-width: 768px) {
-    iframe[name="contentFrame"] {
+    iframe[name="contenido"] {
         min-height: 400px;
     }
 }
 
 @media (max-width: 480px) {
-    iframe[name="contentFrame"] {
+    iframe[name="contendio"] {
         min-height: 300px;
     }
 }

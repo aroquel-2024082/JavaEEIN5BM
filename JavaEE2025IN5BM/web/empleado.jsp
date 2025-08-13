@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,18 +23,18 @@
     <div class="contenedor-principal">
         <div class="panel-formulario">
             <h1>Gestión de Empleados</h1>
-            <div class="formulario">
-                <input type="text" autocomplete="off" name="text" class="input" placeholder="ID">
-                <input type="text" autocomplete="off" name="text" class="input" placeholder="Nombre Empleado">
-                <input type="text" autocomplete="off" name="text" class="input" placeholder="Apellido">
-                <input type="text" autocomplete="off" name="text" class="input" placeholder="Dirección">
-                <input type="text" autocomplete="off" name="text" class="input" placeholder="Teléfono">
-                <input type="text" autocomplete="off" name="text" class="input" placeholder="Correo Electrónico">
-                <input type="text" autocomplete="off" name="text" class="input" placeholder="Puesto">
-            </div>
+                <form action="Controlador?menu=Empleado" method= "POST" class="formulario">
+                <input type="text" value="${empleado.getCodigoEmpleado()}" name="txtId" autocomplete="off"  placeholder="ID">
+                <input type="text" value="${empleado.getNombreEmpleado()}" name="txtNombre" autocomplete="off"  placeholder="Nombre Empleado">
+                <input type="text" value="${empleado.getApellidoEmpleado()}" name="txtApellido" autocomplete="off"  placeholder="Apellido">
+                <input type="text" value="${empleado.getDireccionEmpleado()}" name="txtDireccion" autocomplete="off"  placeholder="Dirección">
+                <input type="text" value="${empleado.getTelefonoEmpleado()}" name="txtTelefono" autocomplete="off"  placeholder="Teléfono">
+                <input type="text" value="${empleado.getEmailEmpleado()}" name="txtCorreo" autocomplete="off"  placeholder="Correo Electrónico">
+                <input type="text" value="${empleado.getPuestoEmpleado()}" name="txtPuesto" autocomplete="off"  placeholder="Puesto">
+               
 
             <div class="botones">
-                <button class="btn-insertar">
+                <button type="submit" class="btn-insertar" name="accion" value="Agregar">
                     <div class="svg-wrapper-1">
                         <div class="svg-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" class="icon">
@@ -111,6 +112,7 @@
                     </span>
                 </button>
             </div>
+                 </form>
 
             <div class="marca-interna">Essenza & Co.</div>
         </div>
@@ -120,7 +122,6 @@
                 <table class="tabla">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
@@ -128,19 +129,25 @@
                             <th>Teléfono</th>
                             <th>Correo Electrónico</th>
                             <th>Puesto</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input type="radio" name="registro" class="radio-input"></td>
-                            <td>1</td>
-                            <td>Juan Pablo</td>
-                            <td>Mendez Saquij</td>
-                            <td>calle 12</td>
-                            <td>62546351</td>
-                            <td>juan@</td>
-                            <td>cajero</td>
-                        </tr>
+                        <c:forEach var="empleado" items="${empleados}">
+                            <tr>
+                                <td>${empleado.getCodigoEmpleado()}</td>
+                                <td>${empleado.getNombreEmpleado()}</td>
+                                <td>${empleado.getApellidoEmpleado()}</td>
+                                <td>${empleado.getDireccionEmpleado()}</td>
+                                <td>${empleado.getTelefonoEmpleado()}</td>
+                                <td>${empleado.getEmailEmpleado()}</td>
+                                <td>${empleado.getPuestoEmpleado()}</td>
+                                <td>
+                                    <a class="btn btn-warning">Editar</a>
+                                    <a class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
