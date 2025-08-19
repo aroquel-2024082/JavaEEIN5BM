@@ -3,7 +3,7 @@
     Created on : 22/07/2025, 16:43:15
     Author     : Francisco
 --%>
-
+<%@page import="com.alanlacan.modelo.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,13 @@
     <link rel="stylesheet" href="Styles/admin.css">
 </head>
 <body>
+    <% 
+        Empleado usuario = (Empleado) session.getAttribute("usuarioLogueado");
+        if(usuario == null) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
+    %>
     <nav>
         <ul>
             <li><a href="Controlador?menu=Cliente" target="contenido">Clientes</a></li>
@@ -26,14 +33,12 @@
             <li><a href="Controlador?menu=Compra" target="contenido">Compras</a></li>
             <li><a href="Controlador?menu=DetalleCompra" target="contenido">Detalle Compras</a></li>
             <li class="avatar">
-                <img src="img/UsuarioAdmin.png" alt="Avatar">
+                <img src="CuentaFotoServlet" alt="Avatar">
                 <ul class="avatar-menu">
-                    <li><a href="Controlador?menu=Principal">Cambiar Cuenta</a></li>
-                    <li><a href="Controlador?menu=Index">Cerrar sesión</a></li>
-                    
-                    <li><a href="#">$(usuario.usuario)</a></li>
-                    <li><a href="#">perfumeria@gmail.com</a></li>
+                    <li><a href="#"> <%= usuario.getNombreEmpleado() %> <%= usuario.getApellidoEmpleado() %> </a></li>
+                    <li><a href="#"> <%= usuario.getEmailEmpleado() %> </a></li>
                     <li><a class="dropdown-divider"></a></li>
+                    <li><a href="Controlador?menu=Index">Cerrar sesión</a></li>
                 </ul>
             </li>
         </ul>
@@ -42,7 +47,7 @@
     <div class="message-welcome">
         <h2>Bienvenido a la ventana de Administrador</h2>
     </div>
-   
+    
     <div class="contenido">
         <iframe name="contenido" width="100%" height="700" style="border: 0;"></iframe>
     </div>
